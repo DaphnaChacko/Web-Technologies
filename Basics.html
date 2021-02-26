@@ -2,11 +2,82 @@
 <html>
 <head>
 <title>
-CSE 4004
+CSE 4004: Demo Page
 </title>
+ 
+
+  <style>
+ /*div {
+  border: 1px solid black;
+  margin-left: 100px;
+  padding-top: 50px;
+  height: 200px;
+  width: 1900px;
+  max-width:900px;
+  outline: thick dashed green;
+  
+  outline-offset: 20px;
+}*/
+
+p.ex1 {
+  margin-left: inherit;
+  margin: auto;
+  padding-top: 10pt;
+  padding-left: 10px;
+}
+.div1 {
+  width: 300px;
+  height: 100px;
+  border: 1px solid blue;
+  box-sizing: border-box;
+}
+
+.div2 {
+  width: 300px;
+  height: 100px;  
+  padding: 50px;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+a:link, a:visited {
+background-color:greenyellow;
+color: white;
+padding: 14px 25px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+}
+a:hover, a:active {
+background-color: red;
+}
+
+ 
+     body{
+    /*background-color:skyblue;
+    background-image: url("../WebTech/back.jpg");
+    background-repeat:no-repeat;
+    background-position: right top;
+    background-attachment: scroll;*/
+    
+    background: skyblue url("../WebTech/back.jpg") no-repeat scroll bottom;
+    style="border:2px solid;"
+    
+  }
+  q{
+    color:tomato;
+  }
+  p {
+  border:5px solid red;
+  border-radius: 50px; 
+  padding:4px;
+  }
+/*style="background-color:silver" style="color:deeppink; text-align:center"*/
+</style>
+<!-- <link rel="stylesheet" href="style1.css"> -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 </head>
 <body>
-Welcome to CSE 4004 Web Technologies!!
+<!--Welcome to CSE 4004 Web Technologies!!
 
 <h4> Introduction</h4>
 <p>
@@ -17,25 +88,53 @@ You will be introduced to the following:
 <p>
     HTML,CSS
 </p>
-
+-->
+<h2 > Let's learn to create webpages using HTML</h2>
+<iframe width=900 height=300 src="Ex.html" title="CSE 4004:Web Technologies" name="iframe_a" >
+</iframe>
+<p><a href="https://nitandhra.ac.in/main/" target="iframe_a">Click here to visit NIT AP</a></p>
 <hr>
 
 <a href="#C4">Jump to Admissions</a>
-
+<p style= color:red;direction:rtl;unicode-bidi:bidi-override;vertical-align:bottom>Example</p>
 <pre>
     Hello Dear All
 
     <strong>Welcome to</strong> <abbr title="Vellore Institute of Technology, Andhra Pradesh">VIT-AP</abbr>
-</pre>
-<p title="It is located in Amaravati">We belong to VIT's AP campus</p>
-
-<a href="https://vitap.ac.in/" target="_blank">Click here to know about VIT AP</a>
-
-
+    <i class="glyphicon glyphicon-thumbs-up"></i>
+</pre><br>
 <a href="https://vitap.ac.in/" target="_blank">
   <img src="../VIT.jpg" alt="VIT_AP" width="104" height="120">
   </a>
 
+<div class=div1>
+   
+<p  title="It is located in Amaravati">We belong to VIT's AP campus </p>
+
+</div>
+<div class=div2>
+   
+  <p  title="It is located in Amaravati">We belong to VIT's AP campus </p>
+  
+  </div>
+
+<ul >
+  <li style=list-style-type:square;list-style-position:inside>Chancellor </li>
+  <li>Vice President</li>
+  <li>Vice Chancellor</li>
+  <li>Registrar</li>
+</ul>
+
+<ol>
+  <li>Dean Academics</li>
+  <li>COE</li>
+  <li>Director Admissions
+    <ul><li>Assistant Director</li>
+        <li> Office</li></ul>
+  </li>
+</ol>
+<br>
+  <a href="https://vitap.ac.in/" target="_blank">Click here to know about VIT AP</a>
  
  <h2 id="C4">Admissions</h2>
 
@@ -61,22 +160,6 @@ You will be introduced to the following:
   <caption>Programmes in VIT-AP</caption>
 </table>
 
-<ul>
-    <li>Chancellor</li>
-    <li>Vice President</li>
-    <li>Vice Chancellor</li>
-    <li>Registrar</li>
-  </ul>
-  
-  <ol>
-    <li>Dean Academics</li>
-    <li>COE</li>
-    <li>Director Admissions
-      <ul><li>Assistant Director</li>
-          <li> Office</li></ul>
-    </li>
-  </ol>
-
    <dl>
     <dt>Schools</dt>
     <dd>- Offer programmes in various disciplines</dd>
@@ -84,12 +167,12 @@ You will be introduced to the following:
     <dd>-A course offered with a focus</dd>
   </dl>
 
-  <form autocomplete="off" target="_blank">
+  <form id="form1">
     <fieldset>
     <legend>Student details</legend>
     
     <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
+    <input type="text" id="fname" name="fname" autofocus required maxlength="2"><br>
     <label for="lname">Last name:</label><br>
     <input type="text" id="lname" name="lname"><br>
     <label for="pwd">Password:</label><br>
@@ -104,7 +187,7 @@ You will be introduced to the following:
     
     <label > Batch</label><br>
 
-    <select id="batch" name="Batch" multiple size="2">
+    <select id="batch" name="Batch">
     <option value="Senior">Senior</option>
     <option value="Junior" selected>Junior</option>
     <option value="Sophomore">Sophomore</option>
@@ -119,9 +202,9 @@ You will be introduced to the following:
   <input type="checkbox" id="univ" name="mode" >
   <label for="univ"> Offline</label><br>
   <label > Enter your choice for room</label><br>
-  <input list="Room choice">
   
-  <datalist id="Room choice">
+  <input list="Room choice">
+    <datalist id="Room choice">
     <option value="Apartment">
     <option value="Two sharing">
     <option value="Four sharing">
@@ -132,29 +215,33 @@ You will be introduced to the following:
   
   <label>Upload marklist</label><br>
     <input type="file"name = "fiel"><br>
+   
     <button type=button onclick="alert('Data sent to server')">Click here></button>
   <br>
+  
     <label for="query">Enter your query:</label><br>
     <textarea id="query"></textarea><br>
     
     <input type="submit" value="Submit">
-    <input type="reset" value="Clear"><br>
-    
-    
+     
   </fieldset>
   </form>  
 
-  <div style="border: 1px solid black">Hello World</div>
-  <audio controls>
+  <input type="reset" value="Clear" form="form1"><br>
+  <br>
+  <a href="mailto:info@vitap.ac.in">Please mail to us for more information</a>
+  <hr>  
+  <span style="border: 1px solid black">We have clubs, chapters, fests and lot more!!</span><br>
+  
+  <audio controls autoplay muted>
     <source src="audio_7ac09a1714.ogg" type="audio/mpeg">
     <source src="audio_7ac09a1714.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
   </audio>
-
-  <a href="mailto:info@vitap.ac.in">For general information</a>
- <hr>  
- <p><q>The more you know, the more you realize you know nothing</q>-Socrates</p>
- <blockquote cite="The C Programming Language, Kernighan and Ritchie">
+  <br>
+  
+  <p><q>The more you know, the more you realize you know nothing</q>-Socrates</p>
+ <blockquote style="color:sienna" cite="The C Programming Language, Kernighan and Ritchie">
    Since C is relatively small, it can be described in a small space, and learned quickly. A programmer can reasonably expect to know and understand and indeed regularly use the entire language.
    </blockquote>
    <img src="../WebTech/Module 1/The_Imitation_Game_(2014).png"width="120" height="140">
@@ -168,5 +255,4 @@ You will be introduced to the following:
 
 </body>
 </html>
-
 
