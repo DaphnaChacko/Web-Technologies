@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>
+CSS examples
+</title>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+tr:hover {background-color: #f00909;}
+tr:nth-child(even) {background-color: green;}
+
+caption {
+  caption-side: bottom;
+}
+li.n {
+  display: inline;
+}
+h2.hidden {
+  visibility: hidden;
+}
+div.relative {
+  position: relative;
+  left: 30px;
+  border: 3px solid #73AD21;
+}
+div.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  border: 3px solid #73AD21;
+}
+div.absolute {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  border: 3px solid #73AD21;
+}
+img {
+  float: left;
+}
+.div3 {
+  float: left;
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  border: 3px solid #73AD21;
+}
+.div4 {
+  border: 1px solid red;
+  clear: left;
+}
+* {
+  box-sizing: border-box;
+}
+
+.img-container {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.clear {
+ 
+  clear: both;
+ 
+}
+
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  color:whitesmoke;
+}
+li a:hover {
+  background-color:lightsalmon;
+}   
+.active {
+  background-color: #4CAF50;
+}
+/*vertical navigation
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}*/
+</style>
+</head>
+
+<body >
+    <ul class=nav>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+   <h1 style=color:crimson;letter-spacing:3px;text-align:center>Styling using <i>CSS</i></h1> 
+   <!--<div style="margin-left:25%;padding:1px 16px;height:1000px;">-->
+   <div style="overflow-x:auto;">
+   <table>
+       <caption> Winter Semester 2021</caption>
+       <tr><th colspan="3"style=color:red>CSE 4004 Web Technologies</th></tr>
+    <tr>
+      <th>B</th>
+      <th>D</th>
+      <th>G</th>
+    </tr>
+    <tr>
+      <td>Tuesday (9)</td>
+      <td>Tuesday (12)</td>
+      <td>Wednesday (11)</td>
+    </tr>
+    <tr>
+      <td>Thursday (9)</td>
+      <td>Thursday (10)</td>
+      <td>Thursday (3)</td>
+    </tr>
+    <tr>
+        <td>Friday (12)</td>
+        <td>Friday (2)</td>
+        <td>Friday (3)</td>
+      </tr>
+  </table>
+  <h2 class="hidden"> Number of students:</h2>
+      <ul>
+          <li class=n> 88</li>
+          <li class=n> 88</li>
+          <li class=n > 62</li>
+      </ul>
+</div>
+<div class="relative">
+    I am flexible
+    <div class="absolute">This div element has position: absolute;</div>
+    </div>
+    <div class="fixed">
+        I am fixed here
+        </div>
+        <p><img src="./220px-Geoffrey_Hinton_at_UBC.jpg" alt="Geoffrey Hinton" style="width:170px;height:170px;margin-left:15px;">
+        Geoffrey Everest Hinton CC FRS FRSC (born 6 December 1947) is a British-Canadian cognitive psychologist and computer scientist, 
+        most noted for his work on artificial neural networks. Since 2013 he divides his time working for Google (Google Brain) and the 
+        University of Toronto. In 2017, he cofounded and became the Chief Scientific Advisor of the Vector Institute in Toronto.
+        With David Rumelhart and Ronald J. Williams, Hinton was co-author of a highly cited paper published in 1986 that popularized the 
+        backpropagation algorithm for training multi-layer neural networks, although they were not the first to propose the approach.
+         Hinton is viewed as a leading figure in the deep learning community. The dramatic image-recognition milestone 
+        of the AlexNet designed in collaboration with his students Alex Krizhevsky and Ilya Sutskever for the ImageNet challenge 2012
+        was a breakthrough in the field of computer vision.
+        </p>
+        <div class="div3">AI is intersting</div>
+<div class="div4">Machine learning too</div>
+<div class="cl">
+    <div class="img-container">
+    <img src="./back.jpg" alt="Backgroung" style="width:100%">
+    </div>
+    <div class="img-container">
+    <img src="./Central-Block.jpg" alt="Central Block" style="width:100%">
+    </div>
+    <div class="img-container">
+    <img src="./download.jpg" alt="Overview" style="width:100%">
+    </div>
+  </div>
+
+</body>
+</html>
