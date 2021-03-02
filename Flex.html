@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/*.flex-container {
+  display: flex;
+  background-color: DodgerBlue;
+  height: 500px;
+  align-items: flex-start;
+  flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: space-around;
+
+ 
+  align-content:flex-start;
+}
+
+.flex-container > div {
+  background-color: greenyellow;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  width: 100px;
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  background-color: rgb(238, 238, 97);
+  padding: 10px;
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  grid-template-columns: auto auto;
+ 
+ }*/
+ .grid-container {
+  display: grid;
+  grid-template-columns: auto auto ;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.item1 {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  grid-area: ex;
+ 
+  
+  /*grid-column: 1 / span 3;
+   grid-row: 1 / span 2;
+  */
+ 
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div>Hello</div>
+  <div >All</div>
+  <div>Welcome</div>  
+  <div>to</div> 
+  <div>CSE</div> 
+  <div>4004</div> 
+  <div>Web</div> 
+  <div>Technologies</div> 
+  <div>Module 1</div> 
+  <div>Module 2</div> 
+  <div>Module 3</div> 
+  <div>Module 4</div> 
+  <div>Module 5</div> 
+  <div>Module 6</div> 
+</div>
+</body>
+</html>
