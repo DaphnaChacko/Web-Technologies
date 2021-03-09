@@ -55,7 +55,6 @@
   <p id=par2></p>
   <h4 class=hdng>Changing value of an element</h4>
   <p id=par1></p>
-  <p id=evnt></p>
   <h4 class=hdng>Extract values from an HTML element</h4>
   <p id=extrt></p>
   <h4 class=hdng>Creating objects</h4>
@@ -64,14 +63,18 @@
   <p id=arrFor></p>
   <h4 class=hdng>Displaying list using array and 'for each'</h4>
   <p id=arrFE></p>
-  <h4 class=hdng>Event Listener</h4>
-  <button id=myBtn>Event Handler</button>
+  <h4 class=hdng>Event Handling</h4>
+  <button id="myBtn">Multiple Event Handler</button>
+  <p id=evnt></p>
+  <h4 class=hdng>Event listener for window. Resize to see the effect</h4>
+  <p id=evnt1></p>
+
   <h4 class=hdng>Form validation</h4>
     <form name="myForm" onsubmit="return validateForm()" style=background:violet>
       Name: <input type="text" name="myfname">
       <input type="submit" value="Submit">
     </form>
-   
+
    <h4 class=hdng>Field Validation</h4>
     <p>Please input a number between 1 and 10:</p>
     <input id="numb">
@@ -166,9 +169,9 @@ function btnFunc1() {
 function btnFunc2() {
   document.getElementById("evnt").innerHTML += "Moused out!<br>";
 }
-/*********** Event listner for window******************/
+/*********** Event listener for window******************/
   window.addEventListener("resize", function(){
-    document.getElementById("evnt").innerHTML = Math.random();
+    document.getElementById("evnt1").innerHTML = Math.random();
   });
   /********** To validate a field ************/
 function validateField() {
