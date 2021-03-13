@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnCheck(){
+        var xttp = new XMLHttpRequest();
+        xttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          fnPwd(this);
+        }
+       };
+      xttp.open("GET", "http://127.0.0.1/Credentials.json", true);
+      xttp.send();
+      }
+     function fnPwd(jsonObj){
+      var jsonDoc = jsonObj.responseText;
+      var myObj=JSON.parse(jsonDoc);
+    
+      var txtUname=document.getElementById("uid");
+      var txtPwd=document.getElementById("pwd");
+      var i,flag=0;
+      for(i in myObj.login){
+        if(myObj.login[i].uname == txtUname.value){
+            flag=0;
+            if(myObj.login[i].pwd == txtPwd.value){
+                alert("Login success");
+                break;
+            }
+            else{
+              alert(myObj.login[i].pwd);
+                alert("Invalid Password");
+                break;
+            }
+        }
+        else{
+            flag=1;
+        }    
+    }
+    if(flag==1)
+    {
+        alert("Invalid username");
+    }
+}
+    </script>
+  </head>
+<body>
+<form name="myForm" method="post" >
+  UserName
+  <input type="text" id="uid" name=frm/>UserPassword
+  <input type="password" id="pwd" name=frm/>
+  <button type="button" onclick="fnCheck()">Submit</button>
+</form>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src= "http://127.0.0.1/Match.js"> </script>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<h2>Reading XML, JSON using AJAX</h2>
+
+<button type="button" onclick="loadDoc()">Get list of subjects</button>
+<br><br>
+<table id="demo"></table>
+<br><br>
+
+<form name="myForm" method="post" >
+  UserName
+  <input type="text" id="uid" name=frm/>UserPassword
+  <input type="password" id="pwd" name=frm/>
+  <button type="button" onclick="fnCheck()">Submit</button>
+</form>
+<p id="para"></p>
+</body>
+</html>
+-->
