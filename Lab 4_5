@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Lab 4-5
+        </title>
+        <script>
+            function check(){
+                var i,radVal,dropVal;
+                var rad=document.getElementsByName('gender');
+                var text = "<ul>";
+                for(i=0;i<rad.length;i++)
+                {
+                    if(rad[i].checked)
+                        radVal=rad[i].value;
+                }
+                text += "<li>" +radVal + "</li>";
+                
+                var drop=document.getElementById("batch");
+                dropVal=drop.options[drop.selectedIndex].innerHTML;
+                text += "<li>" +dropVal + "</li>";
+
+                var dataVal=document.querySelector('#Room').value;
+                var Text = document.querySelector('option[value="' + dataVal + '"]').label;
+                text += "<li>" +dataVal + "</li>";
+                text += "</ul>";
+                document.getElementById("disp").innerHTML = text;
+            }
+        
+            function retrieve()
+            {
+                var xmlReq = new XMLHttpRequest();
+                var table;
+                table="<tr><th>Username</th></tr>";
+                table += "<tr><td>";
+                xmlReq.onreadystatechange = function() 
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        var xmlDoc = xmlReq.responseXML;
+                                
+                                table="<tr><th>Register Number</th><th>Project Title</th><th>Project Supervisor</th><th>Username</th></tr>";
+                                
+                                var x = xmlDoc.getElementsByTagName('Student');
+                               
+                                for (var j = 0; j <x.length; j++) {
+                                                                                                       
+                                    if(x[j].getElementsByTagName("RegNo")[0].childNodes[0].nodeValue == document.getElementById('reg').value){
+                                        table += "<tr><td>" +
+                                        x[j].getElementsByTagName("RegNo")[0].childNodes[0].nodeValue +
+                                        "</td><td>" +
+                                        x[j].getElementsByTagName("ProjectTitle")[0].childNodes[0].nodeValue +
+                                        "</td><td>"+
+                                        x[j].getElementsByTagName("ProjectGuide")[0].childNodes[0].nodeValue+
+                                        "</td><td>";
+                                        document.getElementById("demo").innerHTML = table;
+                                        getUser(this,table);
+                                        break;
+                                    }
+                                    else{
+                                        alert("Student is not registered");
+                                        break;
+                                    }
+                                }
+                                    
+                    }
+                };
+                xmlReq.open("GET", "http://127.0.0.1/Proj.xml", true);
+                xmlReq.send();
+            }
+            function getUser(xmlReq,table){
+                xmlReq.onreadystatechange = function() 
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        var jsonDoc = xmlReq.responseText;
+                        var myObj=JSON.parse(jsonDoc); 
+                        x= myObj.login;
+                        for(var i=0;i<x.length;i++){
+                            if (document.getElementById('reg').value == myObj.login[i].regNo){
+                                table+=myObj.login[i].uname+"</td><tr>";
+                                document.getElementById("demo").innerHTML = table;
+                                alert("Password will be sent to email");
+                            }
+                        }
+                        
+                    }
+                };
+                xmlReq.open("GET", "http://127.0.0.1/login.json", true);
+                xmlReq.send();
+            }
+       
+        </script>
+    </head>
+        <body>
+            <form id="form1">
+            <fieldset>
+            <legend>Student details</legend>
+            
+            <label > Gender</label><br>
+            <input type="radio" name="gender" value="Male">Male
+            <input type="radio" name="gender" value="Female">Female
+            <input type="radio" name="gender" value="Others">Others
+            <br>
+            <label > Batch</label><br>
+            <select id="batch" name="Batch">
+            <option value="Senior">Senior</option>
+            <option value="Junior">Junior</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Fresher">Fresher</option>
+            </select>
+            <br>
+            <label > Enter your choice for room</label><br>
+            
+            <input id="Room" list="Room choice">
+                <datalist id="Room choice">
+                <option value="Apartment">
+                <option value="Two sharing">
+                <option value="Four sharing">
+            </datalist><br>
+            
+            <label for="query">Enter your query:</label><br>
+                <textarea id="query"></textarea><br>
+                <button type="button" onclick="check()">Submit </button>
+                <p id=disp></p>
+            </fieldset>
+            </form> 
+            
+            <form>
+                <fieldset>
+                    <legend>Project details</legend>
+                    <label>Name:</label>
+                    <input type="text" id="fname" name="Name" required><br><br>
+                    <label>Reg No:</label>
+                    <input type="text" id="reg" name="RegNo" required><br><br>
+                    <label>email</label>
+                    <input type="email"><br><br>
+                    <button type="button" onclick="retrieve()">Submit </button>
+                    <table id=demo></table>
+                </fieldset>
+            </form>
+        </body>
+</html>
