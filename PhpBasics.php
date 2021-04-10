@@ -23,7 +23,7 @@ output as well"."<br>";
 echo nl2br("This below line will be printed in a new line.\rHTML CRLF"."<br>");
 
 // The argument of echo can be any expression which produces a string
-$f = "Hello";
+$f = 100;
 echo "This is echo $f"; 
 
 echo "<br>";
@@ -95,7 +95,7 @@ foreach($WT as $x=>$x_value){
 echo "$x:$x_value";
 echo "<br>";
 }
-$f.="All";
+$f.=" All";
 echo $f;
 echo "<br>";
 $num = array(11,22,33);
@@ -119,18 +119,20 @@ echo $winter[0][0];
 echo "<br>";
 echo $_SERVER['PHP_SELF'];
 
-$ans = 2 <=>3;
+$ans = 3 <=>2;
 echo "<br>";
 echo $ans;
 echo "<br>";
 
 $x = array(100,300,400);  
-$y = array(45,55,65,75);  
+$y = array(45,55,65,400);  
 var_dump($x + $y); // union of $x and $y
 echo "<br>";
 
 $x = array("a" => "C", "b" => "C++");  
 $y = array("b" => "C++","a" => "C" );  
+var_dump($x + $y);
+echo "<br>";
 var_dump($x === $y);
 echo "<br>";
 
@@ -138,11 +140,84 @@ echo $color;
 echo $lang = $color ?? "C";
 echo "<br>";
 
-print_r(preg_split("@\s@", "Here\twe\nlearn PHP"));
+print_r(preg_split("@\s@", "Here\twe\nlearn  PHP"));
 echo "<br>";
-echo preg_match("#[a-z]#", "s");
+echo preg_match("#[d-p]|[a-b]#", "aqs");
 echo "<br>";
-echo preg_replace("/PHP/","Java","PHP is simple. PHP was developed in 90s");
+echo preg_replace("#PHP#","Java","PHP is simple. PHPwas developed in 90s");
 echo "<br>";
-print_r(preg_grep("#VIT#i", ["VIT AP", "vitap", "VIT Vellore", "Vit Vellore"]));
+print_r(preg_grep("#VIT VELLORE#", ["VIT","asasVIT VELLORE", "vitap", "VIT VELLORE", "Vit Vellore","Bhopal VIT"]));
+echo "<br>";
+
+$words = [ "leven", "11even", "Maven12", "Amen", "Eleven","9988776655","19BCD4567"];
+$pattern = "/^(17|18|19|20)[A-Z]{3}[0-9]{4}$/";
+//"/^1[7-9][A-Z]{3}[0-9]{4} ,^20[A-Z]{3}[0-9]{4} /";
+
+foreach ($words as $word) {
+
+    if (preg_match($pattern, $word)) {
+        echo "$word matches the pattern\n";
+        echo "<br>";
+    } else {
+        echo "$word does not match the pattern\n";
+        echo "<br>";
+    }
+}
 ?>
+<html>
+<body>
+<!-- <form action="welcome.php" method="post">-->
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+Name: <input type="text" name="name">
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <br><br>
+  Website: <input type="text" name="website">
+  <br><br>
+  Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" value="female">Female
+  <input type="radio" name="gender" value="male">Male
+  <input type="radio" name="gender" value="other">Other
+  <br><br>
+  <input type="submit" name="submit" value="Submit"> 
+</form>
+<?php
+// define variables and set to empty values
+$name = $email = $gender = $comment = $website = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  if(empty($name)){
+    echo "Name should be filled";
+  }
+  
+  $email = test_input($_POST["email"]);
+  $website = test_input($_POST["website"]);
+  $comment = test_input($_POST["comment"]);
+  $gender = test_input($_POST["gender"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
+</body>
+</html>
