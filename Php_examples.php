@@ -140,6 +140,7 @@ echo $color;
 echo $lang = $color ?? "C";
 echo "<br>";
 
+//Regular Expressions
 print_r(preg_split("@\s@", "Here\twe\nlearn  PHP"));
 echo "<br>";
 echo preg_match("#[d-p]|[a-b]#", "aqs");
@@ -164,12 +165,12 @@ foreach ($words as $word) {
     }
 }
 ?>
+
+//PHP form handling
 <html>
 <body>
 <!-- <form action="welcome.php" method="post">-->
-
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
 Name: <input type="text" name="name">
   <br><br>
   E-mail: <input type="text" name="email">
@@ -218,6 +219,66 @@ echo "<br>";
 echo $comment;
 echo "<br>";
 echo $gender;
+
+//Callback functions
+function fn($item) {
+  return strlen($item);
+}
+
+$strings = ["Ramesh","Tara","Sindu","Salman"];
+$lengths = array_map("fn", $strings);
+print_r($lengths);
+echo "<br>";
+
+$strings = ["Ramesh","Tara","Sindu","Salman"];
+$lengths = array_map( function($item) { return strlen($item); } , $strings);
+print_r($lengths);
+
+//user defined
+function add($op1,$op2) {
+  return $op1+$op2;
+}
+
+function divide($op1,$op2) {
+  return $op1/$op2;
+}
+
+function perform($format, $op1,$op2) {
+  // Calling the $format callback function
+  echo $format($op1,$op2);
+}
+echo "<br>";
+perform("add",2,3);
+echo "<br>";
+perform("divide",100,5);
+
+//PHP JSON
+echo "<br>";
+$course = array("B"=>"88", "D"=>"88", "G"=>"62");
+echo json_encode($course);
+echo "<br>";
+$arr = array("Theory",88,88,62);
+echo json_encode($arr);
+echo "<br>";
+
+$jsonobj = '{"B":"88","D":"88","G":"62"}';
+
+$obj=json_decode($jsonobj,true);//returns associative array
+print_r($obj);
+echo "<br>";
+echo $obj["B"];
+echo "<br>";
+foreach($obj as $key => $value) {
+  echo $key . " => " . $value . "<br>";
+}
+$obj1=json_decode($jsonobj);//returns objects
+print_r($obj1);
+echo "<br>";
+echo $obj1->G;
+echo "<br>";
+foreach($obj1 as $key => $value) {
+  echo $key . " => " . $value . "<br>";
+}
 ?>
 </body>
 </html>
