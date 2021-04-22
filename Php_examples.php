@@ -150,8 +150,9 @@ echo "<br>";
 print_r(preg_grep("#VIT VELLORE#", ["VIT","asasVIT VELLORE", "vitap", "VIT VELLORE", "Vit Vellore","Bhopal VIT"]));
 echo "<br>";
 
-$words = [ "leven", "11even", "Maven12", "Amen", "Eleven","9988776655","19BCD4567"];
-$pattern = "/^(17|18|19|20)[A-Z]{3}[0-9]{4}$/";
+$words = [ "leven!", "11even", "Maven12", "Amen", "Eleven","9988776655","19BCD4567"];
+$pattern = "/[a-zA-Z\s]+/";
+#"/^(17|18|19|20)[A-Z]{3}[0-9]{4}$/";
 //"/^1[7-9][A-Z]{3}[0-9]{4} ,^20[A-Z]{3}[0-9]{4} /";
 
 foreach ($words as $word) {
@@ -166,7 +167,7 @@ foreach ($words as $word) {
 }
 ?>
 
-//PHP form handling
+<!--PHP form handling-->
 <html>
 <body>
 <!-- <form action="welcome.php" method="post">-->
@@ -185,6 +186,7 @@ Name: <input type="text" name="name">
   <input type="radio" name="gender" value="other">Other
   <br><br>
   <input type="submit" name="submit" value="Submit"> 
+
 </form>
 <?php
 // define variables and set to empty values
@@ -254,7 +256,7 @@ perform("divide",100,5);
 
 //PHP JSON
 echo "<br>";
-$course = array("B"=>"88", "D"=>"88", "G"=>"62");
+$course = array("B"=>"88", "D"=>"88", "G"=>62);
 echo json_encode($course);
 echo "<br>";
 $arr = array("Theory",88,88,62);
@@ -279,6 +281,102 @@ echo "<br>";
 foreach($obj1 as $key => $value) {
   echo $key . " => " . $value . "<br>";
 }
+//Exception handling
+function display($inp) {
+  if(empty($inp)) {
+    throw new Exception("Empty array", 31);
+  }
+  return $inp[0];
+}
+
+try {
+  $arr=[];
+  echo display($arr);
+  echo "<br>";
+  } 
+  catch(Exception $ex) {
+    $code = $ex->getCode();
+    $message = $ex->getMessage();
+    $file = $ex->getFile();
+    $line = $ex->getLine();
+    echo "Exception thrown in $file on line $line: [Code $code] $message";
+    echo "<br>";
+  }
+//Filters
+$url = "https:// www. google.com";
+
+// Remove all illegal characters from a url
+$url = filter_var($url, FILTER_SANITIZE_URL);
+
+// Validate url
+if (!filter_var($url, FILTER_VALIDATE_URL/*or273*/) === false) { 
+  echo("$url is a valid URL");
+  echo "<br>";
+} else {
+  echo("$url is not a valid URL");
+  echo "<br>";
+}
+
+$arr = Array
+  (
+  "stname" => "Jack",
+  "stmarks" => "98",
+  "stemail" => "jack@abcde.com",
+  );
+  
+$filters = array
+  (
+  "stname" => array
+    (
+    "filter"=>FILTER_CALLBACK,
+    "flags"=>FILTER_FORCE_ARRAY,
+    "options"=>"ucwords"
+    ),
+  "stmarks" => array
+    (
+    "filter"=>FILTER_VALIDATE_INT,
+    "options"=>array
+      (
+      "min_range"=>1,
+      "max_range"=>100
+      )
+    ),
+  "stemail"=> FILTER_VALIDATE_EMAIL,
+  );
+print_r(filter_var_array($arr, $filters));
+echo "<br>";
+
+/*File handling */
+echo readfile("LAB1.txt");
+echo "<br>";
+$myfile = fopen("LAB2.txt", "r");
+echo fread($myfile,filesize("LAB2.txt"));
+echo "<br>";
+fclose($myfile);
+//Create and write
+$filewrt = fopen("LAB3.txt",'w') or die("Unable to open file!");;
+$txt = "HTML,CSS,JAVASCRIPT,AJAX,PHP";
+fwrite($filewrt, $txt);
+fclose($filewrt);
+$filewrt = fopen("LAB3.txt",'r');
+echo "<br>";
+echo fread($filewrt,filesize("LAB3.txt"));
+echo "<br>";
+fclose($filewrt);
+//append
+$fileapp= fopen("LAB1.txt",'a');
+$txt="THANK YOU";
+fwrite($fileapp, $txt);
+fclose($fileapp);
+$fileapp= fopen("LAB1.txt",'a+');
+//echo fread($fileapp,filesize("LAB1.txt"));
+echo readfile("LAB1.txt");
+echo "<br>";
+fclose($fileapp);
+//Print string
+$myfile = fopen("LAB1.txt", "r");
+echo fgets($myfile);
+//echo php_ini_loaded_file(); 
 ?>
 </body>
 </html>
