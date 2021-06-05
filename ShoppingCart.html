@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<script>
+var app = angular.module("myWishList", []); 
+app.controller("myCtrl", function($scope) {
+    $scope.products = [];
+    $scope.addItem = function () {
+      $scope.errortext = "";
+        if (!$scope.addMe) {$scope.errortext = "This is a null wish!!";return;}        
+        if ($scope.products.indexOf($scope.addMe) == -1) {
+            $scope.products.push($scope.addMe);
+        } else {
+            $scope.errortext = "This has been noted!!.";
+        }
+    }   
+    $scope.removeItem = function (x) {
+      
+        $scope.products.splice(x, 1);
+    } 
+});
+</script>
+<h4>Create your bucket list here</h4>
+<div ng-app="myWishList" ng-controller="myCtrl">
+  <input ng-model="addMe">
+  <img src=./addItem.png height = 25cm ng-click="addItem()"></img>
+  <p>{{errortext}}</p>
+  <ul>
+    <li ng-repeat="x in products">{{x}}<br><img src=./deleteIcon.jpg height = 15cm ng-click="removeItem($index)"></img></li>
+  </ul>
+    
+</div>
+</body>
+</html>
