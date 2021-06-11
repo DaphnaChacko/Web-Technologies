@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body ng-app="myApp" ng-controller="myCtrl">
+  <style>
+    table, th , td  {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    table tr:nth-child(odd) {
+      background-color:lightcoral;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+    </style>
+
+  <body ng-app="myApp" ng-controller="myCtrl">
+  
   {{ (first + " " + last)|uppercase }}
   
-  <div test-directive>Attribute</div>
+<div test-directive>Attribute</div>
 <div  ng-init="slots=['B+TB','D+TD','G+TG']" >
   <p>List of slots:</p>
   <ul>
@@ -16,10 +31,11 @@
 
 <div ng-app="" ng-init="str='Hello';str1='All';myCol='blue';week=10;hour=20">
 
-  <input style="background-color:{{myCol}}" ng-model="myCol">
+<input style="background-color:{{myCol}}" ng-model="myCol">
 
-  <p class=test-directive> Class</p>
- <p ng-bind="str +' '+str1">Expression: </p>
+<p class=test-directive> Class</p>
+<!--ng-bind="str +' '+str1"-->
+ <p >Expression: {{78+9}} </p>
  Week: <input type="number" ng-model="week">
  Hours: <input type="number" ng-model="hour">
 
@@ -31,22 +47,80 @@ Total sessions: {{ week * hour }}
   <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
 </form>
 
+<p>
+  <button ng-disabled="mySwitch">Click Me!</button>
+  </p>
+  <p>
+  <input type="checkbox" ng-model="mySwitch"/>Button
+  </p>
+  <p>
+  {{ mySwitch }}
+  </p>
+
+  <p ng-show="true">I am visible.</p>
+
+<p ng-hide="false">I am not visible.</p>
 </div>
 <test-directive></test-directive>
+<ul ng-app="myApp" ng-controller="namesCtrl">
+  <li ng-repeat="x in names">
+      {{x| myFormat }}
+  </li>
+  </ul>
+
+  <table ng-app="myApp" ng-controller="namesCtrl">
+    <tr ng-repeat="x in names">
+      <td>{{ x}}</td>
+      </tr>
+  </table>
+
+  <!--Database-->
+  <div ng-app="myApp" ng-controller="loginCtrl">
+ 
+    <table>
+      <tr ng-repeat="x in students">
+        <td>{{ x.reg_id }}</td>
+        <td>{{ x.firstname }}</td>
+      </tr>
+    </table>
+     
+    </div>
+  
 <!--directive:test-directive-->
 <script>
 var app = angular.module("myApp", []);
 app.directive("testDirective", function() {
     return {
-        restrict : "C",
+        restrict : "EAC",
         //replace : true,
-        template : "<h3>Learning Directives!</h3>"
+        template : "<h3>Learning Directives{{week}}!</h3>"
     };
 });
 app.controller("myCtrl", function($scope) {
     $scope.first = "Web";
     $scope.last = "Technologies";
 });
+app.filter('myFormat', function() {
+  return function(x) {
+    var i, c, txt = "";
+    for (i = 0; i < x.length; i++) {
+      c = x[i];
+      if (i % 2 == 0) {
+        c = c.toUpperCase();
+      }
+      txt += c;
+    }
+    return txt;
+  };
+});
+app.controller('namesCtrl', function($scope) {
+  $scope.names = ['Web technologies','DAtabase management systems','operating systems'];
+});
+
+app.controller('loginCtrl', function($scope, $http) {
+       $http.get("phpAng.php")
+       .then(function (response) {$scope.students = response.data.records;});
+    });
 </script>
 
 </body>
